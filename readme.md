@@ -6,7 +6,7 @@ Settings remain agnostic after bootstrap completion. Settings are set by default
 [CraftCMS](https://www.craftcms.com)\
 [Docker](https://www.docker.com)\
 [Docker Compose](https://docs.docker.com/compose)\
-[Composer](https://getcomposer.org/)\
+[Composer](https://getcomposer.org/)
 
 ### Commands
 Check for Composer installation
