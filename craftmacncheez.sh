@@ -24,6 +24,9 @@ then
     echo "${white}Enter Docker Container Name ${yellow}"
     read containerName
     echo ""
+    echo "${white}Enter Container Port to Expose: ${yellow}"
+    read portNumber
+    echo ""
     echo "${white}Enter Database Root Password: ${yellow}"
     read rootPassword
     echo ""
@@ -36,9 +39,6 @@ then
     echo "${white}Enter Database Name: ${yellow}"
     read databaseName
     echo ""
-    echo "${white}Enter Database Port to Expose: ${yellow}"
-    read portNumber
-
  if [ -d $directoryName ]
     then
       echo "$(tput setaf 1)The ${directoryName} directory already exists. Remove the ${directoryName} directory then re-run"
