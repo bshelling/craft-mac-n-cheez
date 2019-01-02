@@ -63,12 +63,10 @@ then
         echo "" >> docker-compose.yml
         echo "services:" >> docker-compose.yml
         echo "  web:" >> docker-compose.yml
-        echo "    image: webdevops/php-nginx:ubuntu-16.04" >> docker-compose.yml
+        echo "    image: bshelling/craftphpenv:latest" >> docker-compose.yml
         echo "    container_name: ${containerName}_web" >> docker-compose.yml
         echo "    volumes:" >> docker-compose.yml
-        echo "      - ./${directoryName}:/app" >> docker-compose.yml
-        echo "    environment:" >> docker-compose.yml
-        echo "      WEB_DOCUMENT_ROOT: /app/web" >> docker-compose.yml
+        echo "      - ./${directoryName}:/var/www/site" >> docker-compose.yml
         echo "    ports:" >> docker-compose.yml
         echo "      - ${portNumber}:80" >> docker-compose.yml
         echo "    depends_on:" >> docker-compose.yml
@@ -129,12 +127,10 @@ then
         echo "" >> docker-compose.yml
         echo "services:" >> docker-compose.yml
         echo "  web:" >> docker-compose.yml
-        echo "    image: webdevops/php-nginx:ubuntu-16.04" >> docker-compose.yml
+        echo "    image: bshelling/craftphpenv:latest" >> docker-compose.yml
         echo "    container_name: craft_web" >> docker-compose.yml
         echo "    volumes:" >> docker-compose.yml
-        echo "      - ./app:/app" >> docker-compose.yml
-        echo "    environment:" >> docker-compose.yml
-        echo "      WEB_DOCUMENT_ROOT: /app/web" >> docker-compose.yml
+        echo "      - ./app:/var/www/site" >> docker-compose.yml
         echo "    ports:" >> docker-compose.yml
         echo "      - 8081:80" >> docker-compose.yml
         echo "    depends_on:" >> docker-compose.yml
@@ -158,7 +154,7 @@ then
         echo ""
         echo "${white}****************************************************************"
         echo " "
-        echo "${white}Install CraftCMS at ${yellow}http://localhost:8081/index.php?p=admin"
+        echo "${white}Install CraftCMS at ${yellow}http://localhost:${portNumber}/index.php?p=admin/install${white}"
         echo " "
         echo "${white}Docker Containers: craft_web & craft_db "
         echo "${white}Site Port: ${yellow}8081                                            " 
