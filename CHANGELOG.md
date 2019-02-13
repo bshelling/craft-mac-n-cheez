@@ -2,3 +2,6 @@
 - New image created to include imagick
 - Directory change /var/www/site
 - Install url change /install
+
+# 2.0
+- Change image

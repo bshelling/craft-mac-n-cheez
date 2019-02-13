@@ -154,7 +154,7 @@ then
         echo ""
         echo "${white}****************************************************************"
         echo " "
-        echo "${white}Install CraftCMS at ${yellow}http://localhost:${portNumber}/index.php?p=admin/install${white}"
+        echo "${white}Install CraftCMS at ${yellow}http://localhost:8081/index.php?p=admin/install${white}"
         echo " "
         echo "${white}Docker Containers: craft_web & craft_db "
         echo "${white}Site Port: ${yellow}8081                                            " 
