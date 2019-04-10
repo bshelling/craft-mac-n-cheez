@@ -5,3 +5,6 @@
 
 # 2.0
 - Change image
+
+#2.5
+- Resolve for Project Configruation in CraftCMS 3.1 +

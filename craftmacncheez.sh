@@ -1,5 +1,4 @@
 #!/bin/bash
-
 yellow=$(tput setaf 11)
 white=$(tput setaf 7)
 echo "${yellow}***********************************************"
@@ -17,7 +16,6 @@ read customAnswer
 echo ""
 if [ $customAnswer == 'y' ] || [ $customAnswer == 'Y' ]
 then
-
     echo "${white}What's the name of the directory? ${yellow}"
     read directoryName
     echo ""
@@ -56,6 +54,14 @@ then
         echo 'DB_PASSWORD="'${userPassword}'"' >> ./${directoryName}/.env
         echo 'DB_PORT=3306' >> ./${directoryName}/.env
         echo 'DB_DATABASE="'${databaseName}'"' >> ./${directoryName}/.env
+        echo "${white}Would you like to enable the project config file? (y/n)"
+        read enableProjectConfig
+        echo ""
+        if [ $enableProjectConfig == 'y' ] || [ $enableProjectConfig == 'Y' ]
+        then
+        echo "${yellow}Enabling Project Config config/general${white}"
+        sed -i '' "s/\'useProjectConfigFile\'\ =\> false/\'useProjectConfigFile\'\ =\> true/g" ${directoryName}/config/general.php
+        fi
         echo "${yellow}Generating docker-compose.yml${white}"
         touch docker-compose.yml
         echo "" > docker-compose.yml
@@ -95,6 +101,10 @@ then
         echo "${white}Username:${yellow} ${userName}                                           " 
         echo "${white}Password:${yellow} ${userPassword}                                          " 
         echo "${white}Default Database:${yellow} ${databaseName}                                          " 
+        if [$enableProjectConfig == 'y' ] || [$enableProjectConfig == 'Y' ]
+        then
+        echo "${white}Project Config Enabled config/general.php${white}"
+        fi
         echo " "
         echo "${white}****************************************************************"
         echo "$(tput setaf 7)"
@@ -120,6 +130,15 @@ then
         echo 'DB_PASSWORD="adminpwd"' >> ./app/.env
         echo 'DB_PORT=3306' >> ./app/.env
         echo 'DB_DATABASE="craftdb"' >> ./app/.env
+        echo "${white}Would you like to enable the project config file? (y/n)"
+        read enableProjectConfig
+        echo ""
+        if [ $enableProjectConfig == 'y' ] || [ $enableProjectConfig == 'Y' ]
+        then
+        echo "${yellow}Enabling Project Config config/general${white}"
+        sed -i '' "s/\'useProjectConfigFile\'\ =\> false/\'useProjectConfigFile\'\ =\> true/g" app/config/general.php
+        echo "${yellow}Project Config enabled${white}"
+        fi 
         echo "${yellow}Generating docker-compose.yml${white}"
         touch docker-compose.yml
         echo "" > docker-compose.yml
@@ -163,10 +182,13 @@ then
         echo "${white}Username: ${yellow}admin                                           " 
         echo "${white}Password: ${yellow}adminpwd                                          " 
         echo "${white}Default Database: ${yellow}craftdb                                          " 
+        if [ $enableProjectConfig == 'y' ] || [ $enableProjectConfig == 'Y' ]
+        then
+        echo "${white}Project Config Enabled config/general.php${white}"
+        fi
         echo " "
         echo "${white}****************************************************************"
         echo "$(tput setaf 7)"
 
-   
     fi
 fi
