@@ -22,8 +22,11 @@ then
     echo "${white}Enter Docker Container Name ${yellow}"
     read containerName
     echo ""
-    echo "${white}Enter Container Port to Expose: ${yellow}"
+    echo "${white}Enter Craft Container Port to Expose: ${yellow}"
     read portNumber
+    echo ""
+    echo "${white}Enter DB Container Port to Expose: ${yellow}"
+    read dbPortNumber
     echo ""
     echo "${white}Enter Database Root Password: ${yellow}"
     read rootPassword
@@ -77,6 +80,8 @@ then
         echo "      - ${portNumber}:80" >> docker-compose.yml
         echo "    depends_on:" >> docker-compose.yml
         echo "      - mysql" >> docker-compose.yml
+        echo "    networks:" >> docker-compose.yml
+        echo "      - internal:" >> docker-compose.yml
         echo "  mysql:" >> docker-compose.yml
         echo "    image: mysql:5.7" >> docker-compose.yml
         echo "    container_name: ${containerName}_db" >> docker-compose.yml
@@ -85,6 +90,19 @@ then
         echo "      MYSQL_USER: ${userName}" >> docker-compose.yml
         echo "      MYSQL_PASSWORD: ${userPassword}" >> docker-compose.yml
         echo "      MYSQL_DATABASE: ${databaseName}" >> docker-compose.yml
+        echo "    networks:" >> docker-compose.yml
+        echo "      - internal:" >> docker-compose.yml
+        echo "    volumes:" >> docker-compose.yml
+        echo "      - mysql_data:/var/lib/mysql" >> docker-compose.yml
+        echo "    ports:" >> docker-compose.yml
+        echo "      - ${dbPortNumber}:80" >> docker-compose.yml
+        echo "" >> docker-compose.yml
+        echo "networks:" >> docker-compose.yml
+        echo "  internal:" >> docker-compose.yml
+        echo "    driver: bridge" >> docker-compose.yml
+        echo "" >> docker-compose.yml
+        echo "volumes:" >> docker-compose.yml
+        echo "  mysql_data:" >> docker-compose.yml
         echo "${yellow}Docker Compose YAML complete :)${white}"
         echo "${yellow}Preparing docker containers: ${containerName}_web & ${containerName}_db${white} "
         docker-compose up -d
@@ -96,6 +114,7 @@ then
         echo "Install CraftCMS at ${yellow}http://localhost:${portNumber}/index.php?p=admin ${white}"
         echo " "
         echo "Site Port:${yellow} ${portNumber}                                            " 
+        echo "Database Port:${yellow} ${dbPortNumber}                                            " 
         echo "${white}Database Settings                                           " 
         echo "${white}Root Password:${yellow} ${rootPassword}                                           " 
         echo "${white}Username:${yellow} ${userName}                                           " 
@@ -154,6 +173,8 @@ then
         echo "      - 8081:80" >> docker-compose.yml
         echo "    depends_on:" >> docker-compose.yml
         echo "      - mysql" >> docker-compose.yml
+        echo "    networks:" >> docker-compose.yml
+        echo "      - internal:" >> docker-compose.yml
         echo "  mysql:" >> docker-compose.yml
         echo "    image: mysql:5.7" >> docker-compose.yml
         echo "    container_name: craft_db" >> docker-compose.yml
@@ -162,6 +183,19 @@ then
         echo "      MYSQL_USER: admin" >> docker-compose.yml
         echo "      MYSQL_PASSWORD: adminpwd" >> docker-compose.yml
         echo "      MYSQL_DATABASE: craftdb" >> docker-compose.yml
+        echo "    networks:" >> docker-compose.yml
+        echo "      - internal:" >> docker-compose.yml
+        echo "    volumes:" >> docker-compose.yml
+        echo "      - mysql_data:/var/lib/mysql" >> docker-compose.yml
+        echo "    ports:" >> docker-compose.yml
+        echo "      - 3308:3306" >> docker-compose.yml
+        echo "" >> docker-compose.yml
+        echo "networks:" >> docker-compose.yml
+        echo "  internal:" >> docker-compose.yml
+        echo "    driver: bridge" >> docker-compose.yml
+        echo "" >> docker-compose.yml
+        echo "volumes:" >> docker-compose.yml
+        echo "  mysql_data:" >> docker-compose.yml
         echo " "
         echo "${yellow}Docker Compose YAML complete :)${white}"
         echo "${yellow}Preparing docker containers: craft_web & craft_db${white} "
@@ -177,6 +211,7 @@ then
         echo " "
         echo "${white}Docker Containers: craft_web & craft_db "
         echo "${white}Site Port: ${yellow}8081                                            " 
+        echo "${white}Database Port: ${yellow}3308                                            " 
         echo "${white}Database Settings                                           " 
         echo "${white}Root Password: ${yellow}adminpwd                                    " 
         echo "${white}Username: ${yellow}admin                                           " 
