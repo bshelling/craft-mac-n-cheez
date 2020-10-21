@@ -111,7 +111,7 @@ then
         echo "${yellow}Craft Mac-N-Cheez Installation Complete"
         echo "${white}****************************************************************"
         echo " "
-        echo "Install CraftCMS at ${yellow}http://localhost:${portNumber}/index.php?p=admin ${white}"
+        echo "Install CraftCMS at ${yellow}http://localhost:${portNumber}/index.php?p=admin/install ${white}"
         echo " "
         echo "Site Port:${yellow} ${portNumber}                                            " 
         echo "Database Port:${yellow} ${dbPortNumber}                                            " 
@@ -120,6 +120,7 @@ then
         echo "${white}Username:${yellow} ${userName}                                           " 
         echo "${white}Password:${yellow} ${userPassword}                                          " 
         echo "${white}Default Database:${yellow} ${databaseName}                                          " 
+        echo "${white}Database Host: ${yellow} ${containerName}_db                                        " 
         if [$enableProjectConfig == 'y' ] || [$enableProjectConfig == 'Y' ]
         then
         echo "${white}Project Config Enabled config/general.php${white}"
@@ -216,7 +217,8 @@ then
         echo "${white}Root Password: ${yellow}adminpwd                                    " 
         echo "${white}Username: ${yellow}admin                                           " 
         echo "${white}Password: ${yellow}adminpwd                                          " 
-        echo "${white}Default Database: ${yellow}craftdb                                          " 
+        echo "${white}Default Database: ${yellow}craftdb                                    "
+        echo "${white}Database Host: ${yellow}craft_db                                          " 
         if [ $enableProjectConfig == 'y' ] || [ $enableProjectConfig == 'Y' ]
         then
         echo "${white}Project Config Enabled config/general.php${white}"
