@@ -81,7 +81,7 @@ then
         echo "    depends_on:" >> docker-compose.yml
         echo "      - mysql" >> docker-compose.yml
         echo "    networks:" >> docker-compose.yml
-        echo "      - internal" >> docker-compose.yml
+        echo "      - internal:" >> docker-compose.yml
         echo "  mysql:" >> docker-compose.yml
         echo "    image: mysql:5.7" >> docker-compose.yml
         echo "    container_name: ${containerName}_db" >> docker-compose.yml
@@ -91,11 +91,11 @@ then
         echo "      MYSQL_PASSWORD: ${userPassword}" >> docker-compose.yml
         echo "      MYSQL_DATABASE: ${databaseName}" >> docker-compose.yml
         echo "    networks:" >> docker-compose.yml
-        echo "      - internal" >> docker-compose.yml
+        echo "      - internal:" >> docker-compose.yml
         echo "    volumes:" >> docker-compose.yml
         echo "      - mysql_data:/var/lib/mysql" >> docker-compose.yml
         echo "    ports:" >> docker-compose.yml
-        echo "      - ${dbPortNumber}:3306" >> docker-compose.yml
+        echo "      - ${dbPortNumber}:80" >> docker-compose.yml
         echo "" >> docker-compose.yml
         echo "networks:" >> docker-compose.yml
         echo "  internal:" >> docker-compose.yml
@@ -175,7 +175,7 @@ then
         echo "    depends_on:" >> docker-compose.yml
         echo "      - mysql" >> docker-compose.yml
         echo "    networks:" >> docker-compose.yml
-        echo "      - internal" >> docker-compose.yml
+        echo "      - internal:" >> docker-compose.yml
         echo "  mysql:" >> docker-compose.yml
         echo "    image: mysql:5.7" >> docker-compose.yml
         echo "    container_name: craft_db" >> docker-compose.yml
@@ -185,7 +185,7 @@ then
         echo "      MYSQL_PASSWORD: adminpwd" >> docker-compose.yml
         echo "      MYSQL_DATABASE: craftdb" >> docker-compose.yml
         echo "    networks:" >> docker-compose.yml
-        echo "      - internal" >> docker-compose.yml
+        echo "      - internal:" >> docker-compose.yml
         echo "    volumes:" >> docker-compose.yml
         echo "      - mysql_data:/var/lib/mysql" >> docker-compose.yml
         echo "    ports:" >> docker-compose.yml
